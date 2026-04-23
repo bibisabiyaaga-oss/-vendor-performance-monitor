@@ -17,6 +17,8 @@ def health():
 @app.route('/describe', methods=['POST'])
 def describe():
     data = request.get_json()
+    if not data:
+        return jsonify({"error": "Request body is empty"}), 400
     required_fields = ['vendor_name', 'category', 'performance_score',
                        'delivery_rate', 'quality_rating', 'contract_value']
     for field in required_fields:
@@ -39,11 +41,17 @@ def describe():
             "generated_at": datetime.utcnow().isoformat() + "Z"
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "error": "AI service unavailable",
+            "is_fallback": True,
+            "generated_at": datetime.utcnow().isoformat() + "Z"
+        }), 500
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
     data = request.get_json()
+    if not data:
+        return jsonify({"error": "Request body is empty"}), 400
     required_fields = ['vendor_name', 'category', 'performance_score',
                        'delivery_rate', 'quality_rating', 'contract_value']
     for field in required_fields:
@@ -67,7 +75,12 @@ def recommend():
             "generated_at": datetime.utcnow().isoformat() + "Z"
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "error": "AI service unavailable",
+            "is_fallback": True,
+            "recommendations": [],
+            "generated_at": datetime.utcnow().isoformat() + "Z"
+        }), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
