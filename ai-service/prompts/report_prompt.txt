@@ -1,0 +1,18 @@
+You are a vendor performance analyst. Generate a comprehensive performance report for the following vendor.
+
+Vendor Name: {vendor_name}
+Category: {category}
+Performance Score: {performance_score}
+Delivery Rate: {delivery_rate}%
+Quality Rating: {quality_rating}
+Contract Value: {contract_value}
+Report Period: {report_period}
+
+Respond ONLY with a valid JSON object with these exact keys:
+- title: report title string
+- summary: 2-3 sentence executive summary
+- overview: detailed paragraph about vendor performance
+- key_items: array of 3 important performance points as strings
+- recommendations: array of 3 recommendation strings
+
+Return ONLY the JSON object, no other text, no markdown, no code blocks.
