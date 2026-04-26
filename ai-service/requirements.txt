@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 flask==3.0.0
 python-dotenv==1.0.0
-groq==0.9.0
+groq==0.4.2
 flask-limiter==3.5.0
-=======
-flask
-flask-cors
-requests
-python-dotenv
-flask-limiter
->>>>>>> 9d97474f9d44f0d9b708800df3d6cda07694cdc1
+redis==5.0.1
